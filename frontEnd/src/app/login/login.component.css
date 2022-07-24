@@ -1,0 +1,30 @@
+.example-card {
+    margin: 0 auto;
+    width: 20%;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+
+
+.example-full-width {
+    width: 100%;
+}
+
+.main-div {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #abb8c3;
+}
+
+.mat-typography {
+
+    background-color: #abb8c3;
+}
+
+a {
+    margin-left: 70%;
+}
