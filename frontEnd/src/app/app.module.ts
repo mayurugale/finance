@@ -9,19 +9,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FinanceTableComponent } from './finance-table/finance-table.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FinanceTableComponent
+    FinanceTableComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
     
 
   ],

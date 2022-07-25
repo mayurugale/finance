@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from '../common/common.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   login: FormGroup
 
-  constructor(public fb:FormBuilder, public common:CommonService,public route:Router) {
+  constructor(public fb:FormBuilder, public common:CommonService,public route:Router,private toastr: ToastrService) {
     
     this.login = this.fb.group({
 
@@ -28,11 +30,15 @@ export class LoginComponent implements OnInit {
     this.common.logd(data).subscribe((result: any) => {
 
       console.log(result)
-      alert(result.massage)
+     // alert(result.massage)
       if(result.status){
 
+        this.toastr.success(result.massage);
+        this.route.navigate(['finance_table'])
+
+
       }else{
-        // alert('login faild')
+        this.toastr.error(result.massage);
       }
 
       
