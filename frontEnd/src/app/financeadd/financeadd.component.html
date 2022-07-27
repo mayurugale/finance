@@ -1,0 +1,60 @@
+<mat-card class="example-card">
+    <mat-card-title>Finance details</mat-card-title>
+    
+    <mat-card-content>
+        <form class="example-form" [formGroup]="finadd" (ngSubmit)="onSubmit()">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>User Name</mat-label>
+              <input matInput formControlName="client_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Mobile No</mat-label>
+                <input type="number" matInput  formControlName="mobile_no">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Mail address</mat-label>
+                <input type="email" matInput  formControlName="mail_address">
+              </mat-form-field>
+             
+              
+
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Address</mat-label>
+              <textarea matInput formControlName="address"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Area</mat-label>
+                <input matInput formControlName="area">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Attend</mat-label>
+                <mat-select formControlName="attend">
+                  <mat-option value="Yes">Yes </mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>follow up date</mat-label>
+                <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="follow_up_date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" type ="submit" [disabled] ="btnclk" >{{btnsave}}</button>
+
+          </form>
+          
+    </mat-card-content>
+   
+  </mat-card>

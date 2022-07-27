@@ -27,6 +27,14 @@ export class CommonService {
 
     return this.http.delete('http://localhost:3000/list/del/'+id)
   }
+
+  finadds(data:any){
+    return this.http.post('http://localhost:3000/list/inx',data)
+  }
+  putprod(data:any, id:number){
+
+    return this.http.put<any>('http://localhost:3000/list/update/'+id,data)
+  }
 }
 
 

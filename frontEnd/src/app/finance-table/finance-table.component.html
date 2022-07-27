@@ -1,3 +1,5 @@
+<button mat-raised-button color="primary" (click)="pageredirect()">Add</button>
+
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
@@ -48,7 +50,9 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Action </th>
 
-<td mat-cell *matCellDef="let row"> <button mat-raised-button color="warn" (click)="ondelete(row.id)">delete</button></td>
+<td mat-cell *matCellDef="let row"> <button mat-icon-button color="primary" (click)="onedit(row)">    <mat-icon>edit</mat-icon>
+  </button>
+ <button mat-icon-button color="warn" (click)="ondelete(row.id)"><mat-icon>delete</mat-icon></button></td>
       
 
       </ng-container>

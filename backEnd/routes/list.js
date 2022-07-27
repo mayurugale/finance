@@ -75,11 +75,11 @@ router.get('/users', function (req, res, next) {
   })
   
 
-  router.put('/update', function (req, res, next) {
+  router.put('/update/:id', function (req, res, next) {
     console.log(req.body)
     // return
     // if (req.body.email && req.body.password) {
-    let query4 = "UPDATE finance_details SET client_name='"+ req.body.client_name +"',mobile_no='"+ req.body.mobile_no +"',mail_address='"+ req.body.mail_address +"',address='"+ req.body.address +"',area='"+ req.body.area +"',attend='"+ req.body.attend +"',follow_up_date='"+ req.body.follow_up_date +"',description='"+ req.body.description +"' WHERE id='"+ req.body.id +"'";
+    let query4 = "UPDATE finance_details SET client_name='"+ req.body.client_name +"',mobile_no='"+ req.body.mobile_no +"',mail_address='"+ req.body.mail_address +"',address='"+ req.body.address +"',area='"+ req.body.area +"',attend='"+ req.body.attend +"',follow_up_date='"+ req.body.follow_up_date +"',description='"+ req.body.description +"' WHERE id='"+ req.params.id +"'";
   
     console.log(query4);
     connection.query(query4, (err, rows4, fields) => {

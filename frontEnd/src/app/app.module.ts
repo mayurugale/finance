@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FinanceTableComponent } from './finance-table/finance-table.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToastrModule } from 'ngx-toastr';
+import { FinanceaddComponent } from './financeadd/financeadd.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     LoginComponent,
     FinanceTableComponent,
-    DialogComponent
+    DialogComponent,
+    FinanceaddComponent
   ],
   imports: [
     BrowserModule,

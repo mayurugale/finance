@@ -4,8 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { DialogComponent } from '../dialog/dialog.component';
+import { FinanceaddComponent } from '../financeadd/financeadd.component';
 
 
 
@@ -24,7 +26,7 @@ export class FinanceTableComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(public common: CommonService, public dailog: MatDialog) {
+  constructor(public common: CommonService, public dailog: MatDialog,public route:Router) {
     
   }
   ngOnInit(): void {
@@ -36,6 +38,37 @@ export class FinanceTableComponent implements OnInit {
     })
   }
 
+  pageredirect(){
+    // this.route.navigate(['/financeadd'])
+    const dialogRef = this.dailog.open(FinanceaddComponent,{
+      width: '50%',
+      height: '90%',  
+      data:{Action:"add"}    
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {        
+      }
+      else {
+
+      }
+    });
+  }
+  onedit(row:any){
+    const dialogRef = this.dailog.open(FinanceaddComponent,{
+      width: '50%',
+      height: '90%',
+      data: {Action:"edit",...row}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {        
+      }
+      else {
+
+      }
+    });
+  }
   ondelete(id: number) {
 
     const dialogRef = this.dailog.open(DialogComponent);
