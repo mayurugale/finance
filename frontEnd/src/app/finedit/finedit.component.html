@@ -1,0 +1,28 @@
+<mat-card class="example-card">
+    <mat-card-title>Finance details</mat-card-title>
+    
+    <mat-card-content>
+        <form class="example-form" [formGroup]="finupdate" (ngSubmit)="onUpdate()">
+                 
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>follow up date</mat-label>
+                <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="follow_up_date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" type ="submit" >edit</button>
+
+          </form>
+          
+    </mat-card-content>
+   
+  </mat-card>
+

@@ -12,6 +12,7 @@ import { FinanceTableComponent } from './finance-table/finance-table.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FinanceaddComponent } from './financeadd/financeadd.component';
+import { FineditComponent } from './finedit/finedit.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FinanceaddComponent } from './financeadd/financeadd.component';
     LoginComponent,
     FinanceTableComponent,
     DialogComponent,
-    FinanceaddComponent
+    FinanceaddComponent,
+    FineditComponent
   ],
   imports: [
     BrowserModule,

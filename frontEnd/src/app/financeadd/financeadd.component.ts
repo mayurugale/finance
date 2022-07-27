@@ -25,7 +25,7 @@ btnclk:boolean=false
   updatedata:any
 
 
-  constructor(public fb:FormBuilder,public common:CommonService,public router:Router,public tost:ToastrService,@Inject(MAT_DIALOG_DATA) public data: any) { 
+  constructor(public fb:FormBuilder,public common:CommonService,public router:Router,public tost:ToastrService,@Inject(MAT_DIALOG_DATA) public data: any,public route:Router) { 
 
     
     console.log(this.data);
@@ -84,9 +84,15 @@ btnclk:boolean=false
     
     this.common.putprod(this.finadd.value,this.data.id).subscribe((result:any)=>{
 
-          alert("data updated")
+         // alert("data updated")
+
+         this.tost.success('Data updated succssfully');
+
+         this.router.navigate(['/finance_table'])
+
           this.btnclk=false;
-          this.finadd.reset();
+          this.ngOnInit();
+
           
         })
       

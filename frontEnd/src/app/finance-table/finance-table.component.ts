@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { FinanceaddComponent } from '../financeadd/financeadd.component';
+import { FineditComponent } from '../finedit/finedit.component';
 
 
 
@@ -69,6 +70,24 @@ export class FinanceTableComponent implements OnInit {
       }
     });
   }
+  fedit(row:any){
+
+    const dialogRef = this.dailog.open(FineditComponent,{
+      width: '50%',
+      height: '80%',
+      data: {Action:"edit",...row}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {        
+      }
+      else {
+
+      }
+    });
+
+
+  }
+  
   ondelete(id: number) {
 
     const dialogRef = this.dailog.open(DialogComponent);
