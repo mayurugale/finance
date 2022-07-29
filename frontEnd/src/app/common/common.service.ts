@@ -6,34 +6,38 @@ import { Injectable } from '@angular/core';
 })
 export class CommonService {
 
-  constructor(public http:HttpClient) { 
+  constructor(public http: HttpClient) {
 
   }
 
-  getdata(){
+  getdata() {
 
     return this.http.get("http://localhost:3000/users");
   }
 
-  logd(data:any){
+  logd(data: any) {
 
-    return this.http.post('http://localhost:3000/login',data)
+    return this.http.post('http://localhost:3000/login', data)
   }
-  userdata(){
+  userdata() {
 
     return this.http.get('http://localhost:3000/list/users')
   }
-  deldata(id:number){
+  deldata(id: number) {
 
-    return this.http.delete('http://localhost:3000/list/del/'+id)
+    return this.http.delete('http://localhost:3000/list/del/' + id)
   }
 
-  finadds(data:any){
-    return this.http.post('http://localhost:3000/list/inx',data)
+  finadds(data: any) {
+    return this.http.post('http://localhost:3000/list/inx', data)
   }
-  putprod(data:any, id:number){
+  putprod(data: any, id: number) {
 
-    return this.http.put<any>('http://localhost:3000/list/update/'+id,data)
+    return this.http.post<any>('http://localhost:3000/list/update/' + id, data)
+  }
+  putprodattend(data: any, id: number) {
+
+    return this.http.post<any>('http://localhost:3000/list/attend/' + id, data)
   }
 }
 

@@ -27,8 +27,8 @@ export class FinanceTableComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(public common: CommonService, public dailog: MatDialog,public route:Router) {
-    
+  constructor(public common: CommonService, public dailog: MatDialog, public route: Router) {
+
   }
   ngOnInit(): void {
     this.common.userdata().subscribe((users: any) => {
@@ -39,55 +39,43 @@ export class FinanceTableComponent implements OnInit {
     })
   }
 
-  pageredirect(){
+  pageredirect() {
     // this.route.navigate(['/financeadd'])
-    const dialogRef = this.dailog.open(FinanceaddComponent,{
-      width: '50%',
-      height: '90%',  
-      data:{Action:"add"}    
+    const dialogRef = this.dailog.open(FinanceaddComponent, {
+      width: '40%',
+      height: 'auto',
+      data: { Action: "add" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == true) {        
-      }
-      else {
-
-      }
+      this.ngOnInit()
     });
   }
-  onedit(row:any){
-    const dialogRef = this.dailog.open(FinanceaddComponent,{
-      width: '50%',
-      height: '90%',
-      data: {Action:"edit",...row}
+  onedit(row: any) {
+    const dialogRef = this.dailog.open(FinanceaddComponent, {
+      width: '40%',
+      height: 'auto',
+      data: { Action: "edit", ...row }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == true) {        
-      }
-      else {
-
-      }
+      this.ngOnInit()
     });
   }
-  fedit(row:any){
+  fedit(row: any) {
 
-    const dialogRef = this.dailog.open(FineditComponent,{
-      width: '50%',
-      height: '80%',
-      data: {Action:"edit",...row}
+    const dialogRef = this.dailog.open(FineditComponent, {
+      width: '40%',
+      height: 'auto',
+      data: { Action: "edit", ...row }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result == true) {        
-      }
-      else {
-
-      }
+      this.ngOnInit()
     });
 
 
   }
-  
+
   ondelete(id: number) {
 
     const dialogRef = this.dailog.open(DialogComponent);
@@ -100,7 +88,7 @@ export class FinanceTableComponent implements OnInit {
         })
       }
       else {
-
+        this.ngOnInit()
       }
     });
 

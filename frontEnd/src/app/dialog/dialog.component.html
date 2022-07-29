@@ -1,7 +1,7 @@
-<h1 mat-dialog-title style="text-align: center;color:red">Are you absolutely sure you want to delete?</h1>
+<h1 mat-dialog-title style="text-align: center;">Are you absolutely sure you want to delete?</h1>
 <div mat-dialog-actions>
-    <button mat-raised-button color="warn" (click) = "delete()">Delete</button>
-
-
-  <button mat-button mat-dialog-close (click) = "close()">Close</button>
+  <span class="center">
+    <button mat-raised-button color="primary" (click)="delete()">Delete</button>
+    <button mat-raised-button mat-dialog-close color="warn" (click)="close()">Close</button>
+  </span>
 </div>

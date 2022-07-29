@@ -10,4 +10,11 @@ table {
   td, th {
     width: 10%;
   }
+
+.container {
+      display: inline-block;
+      margin: 15px;
+      padding: 15px;
+      border: 1px solid black;
+    }
   
