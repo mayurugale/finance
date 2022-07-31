@@ -39,6 +39,10 @@ export class CommonService {
 
     return this.http.post<any>('http://localhost:3000/list/attend/' + id, data)
   }
+  bulkUpload(data: any) {
+
+    return this.http.post<any>('http://localhost:3000/list/bulkUpdate/', data)
+  }
 }
 
 

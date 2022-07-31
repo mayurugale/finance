@@ -5,10 +5,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CommonService } from '../common/common.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { FinanceaddComponent } from '../financeadd/financeadd.component';
 import { FineditComponent } from '../finedit/finedit.component';
+import * as XLSX from 'xlsx';
+
 
 
 
@@ -21,13 +24,15 @@ export class FinanceTableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'client_name', 'mobile_no', 'mail_address', 'address', 'area', 'attend', 'action'];
   dataSource!: MatTableDataSource<any>;
   action: any
+  willDownload = false;
+
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(public common: CommonService, public dailog: MatDialog, public route: Router) {
+  constructor(public common: CommonService, public dailog: MatDialog, public route: Router, private toastr: ToastrService) {
 
   }
   ngOnInit(): void {
@@ -106,6 +111,38 @@ export class FinanceTableComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  onFileSelected(ev: any) {
+    console.log(ev['target']['files']);
+    let workBook: any = null;
+    let jsonData: any = null;
+    const reader = new FileReader();
+    const file = ev.target.files[0];
+    reader.onload = (event) => {
+      const data = reader.result;
+      workBook = XLSX.read(data, { type: 'binary' });
+      jsonData = workBook.SheetNames.reduce((initial: any, name: any) => {
+        const sheet = workBook.Sheets[name];
+        initial[name] = XLSX.utils.sheet_to_json(sheet);
+        return initial;
+      }, {});
+      // const dataString = JSON.stringify(jsonData);
+      // console.log(dataString);
+      this.uploadData(jsonData)
+    }
+    reader.readAsBinaryString(file);
+  }
+
+  uploadData(data: any) {
+    console.log(data.Sheet1);
+    if (data.Sheet1) {
+      this.common.bulkUpload(data.Sheet1).subscribe((data: any) => {
+
+      })
+    }
+
+  }
+
 }
 
 

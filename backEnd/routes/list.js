@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../config/db')
+var _ = require('lodash');
+var Promise = require('promise');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -92,6 +94,58 @@ router.post('/attend/:id', function (req, res, next) {
   //   res.json({ status: false, massage: "invalid deatils " });
   // }
 
+})
+
+router.post('/bulkUpdate', function (req, res, next) {
+  try {
+    const data = req.body
+    console.log(req.body[0]);
+    // const abc = [req.body[0], req.body[1]]
+    const data_chunk = _.chunk(data, 100);
+    let i = -1
+    function q() {
+      i++
+      if (data_chunk.length == i) {
+        let count = data.length
+        return res.json({ status: true, massage: "Total Count Inserted :-" + count })
+      }
+      else {
+        Promise.all(bulkInsert(data_chunk[i])).then(data => {
+          q()
+        }).catch(e => {
+          console.log("error", e);
+          return res.json({ status: false })
+        })
+      }
+    }
+    q()
+
+  }
+  catch (e) {
+    console.log(e);
+  }
+
+  function bulkInsert(data) {
+    return new Promise((resolve, reject) => {
+      console.log('a');
+      let sql = data.map(item => `("${item.client_name}", "${item.address}", "${item.mobile_no}","${0}")`)
+
+      const finalQuery = "INSERT INTO finance_details (client_name, address, mobile_no,attend) VALUES " + sql
+      console.log(finalQuery);
+      connection.query(finalQuery, (err, rows2, fields) => {
+        if (err) {
+          console.log(err);
+          return reject(err);
+        }
+        else {
+          console.log('The solution is: ', rows2);
+          // res.json(rows2)
+          resolve(rows2);
+        }
+      });
+
+    });
+  }
 })
 
 module.exports = router;

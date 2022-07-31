@@ -1,6 +1,12 @@
 <div class="container">
   <button mat-raised-button color="primary" (click)="pageredirect()">Add</button>
-
+  <button mat-raised-button color="primary" style="float: right;" (click)="file.click()">BulkData</button>
+  <input type="file" #file (change)="onFileSelected($event)" accept=".xlsx, .xls" hidden>
+  <div id="output"></div>
+  <br>
+  <div *ngIf="willDownload">
+    <a id="download"> Download JSON File </a>
+  </div>
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
